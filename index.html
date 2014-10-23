@@ -1,8 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mashup</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Tom Sjoberg Mashup - Google Maps/MTA Bus Stops</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV0-BcddEE1A1PaTSP21vLtCYiwXV_XuY"></script>
+    <script src="gmaps.js"></script>
+    <script src="mashup.js"></script>
   </head>
   <body>
+    <div id="map-canvas"></div>
   </body>
 </html>
