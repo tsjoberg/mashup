@@ -4,8 +4,19 @@ $( function() {
         div: '#map-canvas',
         lat: 40.7658914,
         lng: -73.9614134,
-        layers: ['transit'],
         enableNewStyle: true
+    });
+
+    GMaps.geolocate({
+      success: function(position) {
+        map.setCenter(position.coords.latitude, position.coords.longitude);
+      },
+      error: function(error) {
+        alert('Geolocation failed - using default NYC location: '+ error.message);
+      },
+      not_supported: function() {
+        alert("Your browser does not support geolocation");
+      }
     });
 
     map.addLayer('transit');
