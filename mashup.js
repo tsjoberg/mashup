@@ -7,6 +7,8 @@ $( function() {
         enableNewStyle: true
     });
 
+    
+
     GMaps.geolocate({
       success: function(position) {
         map.setCenter(position.coords.latitude, position.coords.longitude);
@@ -18,6 +20,8 @@ $( function() {
         alert("Your browser does not support geolocation");
       }
     });
+
+
 
     map.addLayer('transit');
 
