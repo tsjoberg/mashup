@@ -1,17 +1,22 @@
 $( function() {
 
+    var lat = 40.7658914;
+    var lng = -73.9614134;
+
     map = new GMaps({
         div: '#map-canvas',
-        lat: 40.7658914,
-        lng: -73.9614134,
+        lat: lat,
+        lng: lng,
         enableNewStyle: true
     });
 
-    
+    //map.addLayer('transit');
 
     GMaps.geolocate({
       success: function(position) {
         map.setCenter(position.coords.latitude, position.coords.longitude);
+        lat = position.coords.latitude;
+        lng = position.coords.longitude;
       },
       error: function(error) {
         alert('Geolocation failed - using default NYC location: '+ error.message);
@@ -21,26 +26,20 @@ $( function() {
       }
     });
 
-
-
-    map.addLayer('transit');
-
-    $.getJSON("http://bustime.mta.info/api/where/stops-for-location.json?radius=100&lat=40.7658914&lon=-73.9614134&latSpan=0.005&lonSpan=0.005&key=791cb5ed-0cd7-44af-96b0-91fa6d781095&callback=?", function(data){
+    $.getJSON("http://bustime.mta.info/api/where/stops-for-location.json?radius=200&lat=" + lat + "&lon=" + lng + "&latSpan=0.005&lonSpan=0.005&key=791cb5ed-0cd7-44af-96b0-91fa6d781095&callback=?", function(data){
         var markers = [];
         var items = data.data.stops;
-        console.log(items);
+
         for (i=0; i < items.length; i++){
             markers.push({
                 lat: items[i].lat,
                 lng: items[i].lon,
                 title: items[i].name,
                 infoWindow: {
-                    content: "<h1>" + items[i].name + "</h1>"
+                    content: "<h4>" + items[i].name + "</h4>"
                 }
             });
         }
-
-        console.log(markers);
 
         map.addMarkers(markers);
     });
