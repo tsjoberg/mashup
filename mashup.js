@@ -28,7 +28,7 @@ $( function() {
         console.log(markers);
 
         map.addMarkers(markers);
-    })
+    });
 
 
 });
